@@ -142,8 +142,7 @@ None, do whatever.
 
 This tool is a reincarnation of my earlier project, [bash manager](https://github.com/lingtalfi/bashmanager). I found myself needing a tool for executing tasks from a terminal again and remembered, "Oh right, I've already done this with bash manager". However, after revisiting bash manager's documentation, I felt it was a bit too complex for what I needed.
 
-So, I decided to start fresh and create a simplified version. I engaged ChatGPT4 to assist with the coding and, astonishingly, we finished the job in under 10 minutes. The entire chat conversation, which led to the creation of this tool, will be added somewhere in the repository for anyone interested in the development process.
+So, I decided to start fresh and create a simplified version. I engaged ChatGPT4 to assist with the coding and, astonishingly, we finished the job in under 10 minutes. 
 
 I am quite pleased with this new, streamlined version. It accomplishes exactly what it needs to, no more and no less.
 
-Here is the discussion: https://chat.openai.com/share/60b08b6a-d9c3-4321-8605-fb684a3515c4
