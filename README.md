@@ -4,7 +4,7 @@ Bash Tasks is a simple script designed to run any bash scripts organized in a di
 
 ## Usage
 
-To start the Task Runner, open your terminal and run:
+To start Bash Tasks, open your terminal and run:
 
 ```bash
 bt
