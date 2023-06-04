@@ -48,7 +48,7 @@ Directories are suffixed with a /. You can navigate into directories by entering
    alias bt='path_to_script/bash-tasks.sh'
    ```
 
-5. Customize the root directory: In the **bash-tasks.sh** script, update the **ROOT_DIR** variable to reflect the actual location where you will store your tasks. By default, it is set to "/tmp/root", which is a temporary directory and its contents are deleted on every reboot.
+5. Customize the root directory: In the **bash-tasks.sh** script, update the **ROOT_DIR** variable to reflect the actual location where you will store your tasks. By default, it is set to **/tmp/root**, which is a temporary directory and its contents are deleted on every reboot.
 
    ```bash
    ROOT_DIR="/path/to/your/tasks/directory"
@@ -56,7 +56,7 @@ Directories are suffixed with a /. You can navigate into directories by entering
 
    Ensure that the path you specify is an absolute path and the directory exists. This directory will be the root directory that houses all your tasks.
 
-6. Place your tasks in the **tasks/** */ directory. They can be organized into subdirectories.
+6. Place your tasks in the **tasks/** directory. They can be organized into subdirectories.
 
 ## Adding Tasks
 
