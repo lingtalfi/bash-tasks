@@ -60,7 +60,7 @@ Directories are suffixed with a /. You can navigate into directories by entering
 
 ## Adding Tasks
 
-Tasks are simply bash scripts that you place in the tasks/ directory. They can be organized into subdirectories. All scripts should have the .sh extension and should be executable. Here is an example of a simple task:
+Tasks are simply bash scripts that you place in the **tasks/** directory. They can be organized into subdirectories. All scripts should have the .sh extension and should be executable. Here is an example of a simple task:
 
 ```bash
 #!/bin/bash
