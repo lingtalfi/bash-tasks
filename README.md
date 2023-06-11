@@ -132,11 +132,7 @@ Note: This is an example script. Be sure to replace the placeholders like `ubu`,
 
 Note2:
 
-You might run into an issue with the way the here document (<< ENDSSH) is handled in the script.
-
-If this is the case, the problem could be related to variable expansion.
-When you use << ENDSSH in your script, any variables inside ENDSSH will be expanded by your local shell before they're sent over SSH.
-To prevent this behavior and allow the variables to be expanded on the remote server, you should quote ENDSSH like this: << 'ENDSSH'.
+To prevent variables from being interpreted by the local shell before the commands are sent to the remote server, you can escape the dollar symbol like this: `\$`.
 
 ```bash
 #!/bin/bash
@@ -151,19 +147,19 @@ REMOTE_DUMP_PATH="/home/myuser/tmp/mybackup.sql"
 scp -i ~/.ssh/ubu_ed25519 -P 50000 $LOCAL_DUMP_PATH my_user@123.456.789.123:$REMOTE_DUMP_PATH
 
 # SSH into the remote server and run the commands
-ssh -i ~/.ssh/ubu_ed25519 my_user@123.456.789.123 -p 50000 << 'ENDSSH'
+ssh -i ~/.ssh/ubu_ed25519 my_user@123.456.789.123 -p 50000 << ENDSSH
 
 # Get the running MySQL container ID
-CONTAINER_ID=$(docker ps -f name=myapp-db-1 -q)
+CONTAINER_ID=\$(docker ps -f name=myapp-db-1 -q)
 
 # remove this line once it works...
-echo "CONTAINER_ID: $CONTAINER_ID" > /home/my_user/tmp/cont_id.txt
+echo "CONTAINER_ID: \$CONTAINER_ID" > /home/my_user/tmp/cont_id.txt
 
 # Drop the existing database and create a new one
-echo "DROP DATABASE IF EXISTS my_database; CREATE DATABASE my_database;" | docker exec -i $CONTAINER_ID mysql -uroot -pXXX
+echo "DROP DATABASE IF EXISTS my_database; CREATE DATABASE my_database;" | docker exec -i \$CONTAINER_ID mysql -uroot -pXXX
 
 # Import the MySQL dump
-docker exec -i $CONTAINER_ID mysql -umy_databaseuser -pxxx my_database < $REMOTE_DUMP_PATH
+docker exec -i \$CONTAINER_ID mysql -umy_databaseuser -pxxx my_database < $REMOTE_DUMP_PATH
 
 # Remove the dump file from the remote server
 rm $REMOTE_DUMP_PATH
