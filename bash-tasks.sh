@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROOT_DIR="/tmp/root"
+ROOT_DIR="/Users/pierrelafitte/scripts/bash-tasks-my"
 TASK_DIR="${ROOT_DIR}/tasks"
 
 OPTIONS=()

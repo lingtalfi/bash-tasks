@@ -130,6 +130,48 @@ scp ubu:/home/me/my-backups/project1/backup.sql .
 
 Note: This is an example script. Be sure to replace the placeholders like `ubu`, `some_user`, `some_pass`, `project1`, and the paths with your actual values.
 
+Note2:
+
+You might run into an issue with the way the here document (<< ENDSSH) is handled in the script.
+
+If this is the case, the problem could be related to variable expansion.
+When you use << ENDSSH in your script, any variables inside ENDSSH will be expanded by your local shell before they're sent over SSH.
+To prevent this behavior and allow the variables to be expanded on the remote server, you should quote ENDSSH like this: << 'ENDSSH'.
+
+```bash
+#!/bin/bash
+
+# Set your local file path
+LOCAL_DUMP_PATH="/path/to/app/backup.sql"
+
+# Set a temporary remote file path
+REMOTE_DUMP_PATH="/home/myuser/tmp/mybackup.sql"
+
+# Copy local dump to the remote server
+scp -i ~/.ssh/ubu_ed25519 -P 50000 $LOCAL_DUMP_PATH my_user@123.456.789.123:$REMOTE_DUMP_PATH
+
+# SSH into the remote server and run the commands
+ssh -i ~/.ssh/ubu_ed25519 my_user@123.456.789.123 -p 50000 << 'ENDSSH'
+
+# Get the running MySQL container ID
+CONTAINER_ID=$(docker ps -f name=myapp-db-1 -q)
+
+# remove this line once it works...
+echo "CONTAINER_ID: $CONTAINER_ID" > /home/my_user/tmp/cont_id.txt
+
+# Drop the existing database and create a new one
+echo "DROP DATABASE IF EXISTS my_database; CREATE DATABASE my_database;" | docker exec -i $CONTAINER_ID mysql -uroot -pXXX
+
+# Import the MySQL dump
+docker exec -i $CONTAINER_ID mysql -umy_databaseuser -pxxx my_database < $REMOTE_DUMP_PATH
+
+# Remove the dump file from the remote server
+rm $REMOTE_DUMP_PATH
+
+ENDSSH
+EOF
+```
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
@@ -142,7 +184,6 @@ None, do whatever.
 
 This tool is a reincarnation of my earlier project, [bash manager](https://github.com/lingtalfi/bashmanager). I found myself needing a tool for executing tasks from a terminal again and remembered, "Oh right, I've already done this with bash manager". However, after revisiting bash manager's documentation, I felt it was a bit too complex for what I needed.
 
-So, I decided to start fresh and create a simplified version. I engaged ChatGPT4 to assist with the coding and, astonishingly, we finished the job in under 10 minutes. 
+So, I decided to start fresh and create a simplified version. I engaged ChatGPT4 to assist with the coding and, astonishingly, we finished the job in under 10 minutes.
 
 I am quite pleased with this new, streamlined version. It accomplishes exactly what it needs to, no more and no less.
-
