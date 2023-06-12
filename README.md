@@ -90,6 +90,47 @@ read -p "Enter your age: " age
 echo "Your name is $name, and your age is $age."
 ```
 
+### Tasks with selections
+
+```bash
+#!/bin/bash
+
+# Display menu
+echo "Please select an option:"
+echo "1. Do 1"
+echo "2. Do 2"
+echo "3. Do 3"
+echo "4. Quit"
+
+# Read user input
+read -p "Enter your choice: " choice
+
+# Execute based on choice
+case $choice in
+    1)
+        echo "You selected Do 1."
+        # Code to perform "Do 1" goes here
+        ;;
+    2)
+        echo "You selected Do 2."
+        # Code to perform "Do 2" goes here
+        ;;
+    3)
+        echo "You selected Do 3."
+        # Code to perform "Do 3" goes here
+        ;;
+    4)
+        echo "You selected Quit. Exiting program."
+        exit 0
+        ;;
+    *)
+        echo "Invalid choice, please select a valid option."
+        exit 1
+        ;;
+esac
+
+```
+
 ### Tasks that Execute Commands Remotely
 
 Occasionally, your script may need to execute commands on a remote server. Here's a basic template for a script that executes commands both locally and remotely (note that `ubu` is a SSH alias defined in the `~/.ssh/config` file):
