@@ -232,7 +232,7 @@ open -a Terminal.app "$temp_script"
 
 ## Example
 
-Here is my current task tree:
+Here is an example task tree:
 
 ```bash
 .
