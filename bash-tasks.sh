@@ -5,13 +5,16 @@ TASK_DIR="${ROOT_DIR}/tasks"
 
 OPTIONS=()
 
+
 function drawMenu() {
     echo "Please select a task:"
+    IFS=$'\n' OPTIONS=($(printf "%s\n" "${OPTIONS[@]}"|sort))
     for i in "${!OPTIONS[@]}"; do
         printf "%d. %s\n" $((i+1)) "${OPTIONS[$i]}"
     done
     echo "b. Go back"
 }
+
 
 function selectTask() {
     local path="$1"
