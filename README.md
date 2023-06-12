@@ -230,6 +230,28 @@ open -a Terminal.app "$temp_script"
 
 ```
 
+## Example
+
+Here is my current task tree:
+
+```bash
+.
+└── tasks
+    ├── a.\ general
+    │   ├── code.sh
+    │   └── open.sh
+    ├── bash-tasks
+    │   ├── a.\ cd\ my\ tasks.sh
+    │   ├── a.\ code\ my\ tasks.sh
+    │   └── b.\ code\ repo\ (bash\ tasks).sh
+    └── tndanse
+        ├── a.\ open.sh
+        ├── compose-down.sh
+        ├── compose-up.sh
+        ├── generate\ auto-admin.sh
+        └── upload-backup-and-restore-in-container.sh
+```
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
