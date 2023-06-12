@@ -73,7 +73,7 @@ Remember to make the task executable:
 chmod +x tasks/hello-world.sh
 ```
 
-### Tasks with Parameters
+### Task with Parameters
 
 Sometimes, you might want your script to prompt for parameters. Here's a simple template for a script that does this:
 
@@ -90,7 +90,7 @@ read -p "Enter your age: " age
 echo "Your name is $name, and your age is $age."
 ```
 
-### Tasks with selections
+### Task with choices
 
 ```bash
 #!/bin/bash
@@ -131,7 +131,7 @@ esac
 
 ```
 
-### Tasks that Execute Commands Remotely
+### Task that execute commands remotely
 
 Occasionally, your script may need to execute commands on a remote server. Here's a basic template for a script that executes commands both locally and remotely (note that `ubu` is a SSH alias defined in the `~/.ssh/config` file):
 
@@ -207,6 +207,27 @@ rm $REMOTE_DUMP_PATH
 
 ENDSSH
 EOF
+```
+
+### Task that cd into a directory
+
+Since bash-tasks programs loops onto itself, it can be tricky to just execute a task that cd into a directory. Here's a simple template for a script that does this (at least on mac):
+
+```bash
+#!/bin/bash
+
+# Create a temporary file for the script
+temp_script=$(mktemp /tmp/tmp_script.XXXXXX)
+
+# Write commands to temporary bash script
+echo "source ~/.bash_profile && cd /path/of/your/choice && exec bash -l" > "$temp_script"
+
+# Make temporary bash script executable
+chmod +x "$temp_script"
+
+# Open new terminal window and run temporary bash script
+open -a Terminal.app "$temp_script"
+
 ```
 
 ## Contributing
