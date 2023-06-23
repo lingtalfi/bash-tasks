@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROOT_DIR="/Users/pierrelafitte/scripts/bash-tasks-my"
+ROOT_DIR="/Users/pierrelafitte/Documents/it/scripts/bash-tasks-my"
 TASK_DIR="${ROOT_DIR}/tasks"
 
 OPTIONS=()
@@ -53,9 +53,9 @@ function selectTask() {
             local newPath="${path}${selection}"
             # Remove trailing slash from directories before checking if they exist
             newPath="${newPath%/}"
-            if [[ -d $newPath ]]; then
+            if [[ -d "$newPath" ]]; then
                 selectTask "$newPath/"
-            elif [[ -f $newPath ]]; then
+            elif [[ -f "$newPath" ]]; then
                 bash "$newPath"
                 read -n1 -r -p "Press any key to continue..."
             fi
